@@ -10,6 +10,10 @@ app.use(cors());
 
 const repositories = [];
 
+app.get("/", (request, response) => {
+  return response.json(repositories);
+});
+
 app.get("/repositories", (request, response) => {
   return response.json(repositories);
 });
@@ -62,7 +66,7 @@ app.delete("/repositories/:id", (request, response) => {
 
   repositories.splice(repositoryIndex, 1);
 
-  return response.status(204).send();
+  return response.json(repositories);
 });
 
 app.post("/repositories/:id/like", (request, response) => {
